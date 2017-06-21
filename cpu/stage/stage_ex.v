@@ -55,6 +55,7 @@ module stage_ex(
 	reg [31:0] reg_lo;
 	always @(*) begin
 	end
+	
 	reg [31:0] result_logic;
 	always @(*) begin
 		if (reset == `RESET_ENABLE) begin
@@ -81,7 +82,7 @@ module stage_ex(
 		end
 	end
 	
-	reg [31:0] result_shift;
+	/*reg [31:0] result_shift;
 	always @(*) begin
 		if (reset == `RESET_ENABLE) begin
 			result_shift <= 32'b0;
@@ -98,7 +99,8 @@ module stage_ex(
 				end
 			endcase
 		end
-	end
+	end*/
+	/*
 	reg [31:0] result_move;
 	always @(*) begin
 		if (reset == `RESET_ENABLE) begin
@@ -119,6 +121,8 @@ module stage_ex(
 			endcase 
 		end
 	end
+	*/
+	
 	reg [63:0] result_arithmetic;
 	always @(*) begin
 		if (reset == `RESET_ENABLE) begin
@@ -127,10 +131,14 @@ module stage_ex(
 		else begin
 			case (operator_i)
 				`OP_SLT : begin
+					result_arithmetic <= (operand_a_i[31] == 1'b1 && operand_b_i[31] == 1'b0 || 
+										  operand_a_i[31] == 1'b0 && operand_b_i[31] == 1'b0 && operand_sum[31] == 1'b1 ||
+										  operand_a_i[31] == 1'b1 && operand_b_i[31] == 1'b1 && operand_sum[31] == 1'b1);
 				end
 				`OP_SLTU : begin
 				end
 				`OP_ADD, `OP_ADDU, `OP_SUB, `OP_SUBU : begin
+					result_arithmetic <= operand_sum;
 				end
 				`OP_CLZ : begin
 				end
@@ -141,6 +149,7 @@ module stage_ex(
 				`OP_MULTU : begin
 				end
 				default : begin
+					result_arithmetic = 32'b0;
 				end
 			endcase
 		end
@@ -159,10 +168,27 @@ module stage_ex(
 	always @(*) begin
 		case (operator_i) 
 			`OP_ADD : begin
+				if (operand_a_i[31] == 1'b1 && operand_b_i[31] == 1'b1 && operand_sum[31] == 1'b0 ||
+					operand_a_i[31] == 1'b0 && operand_b_i[31] == 1'b0 && operand_sum[31] == 1'b1) 
+				begin
+					reg_write_enable_o <= `WRITE_DISABLE;
+				end
+				else begin
+					reg_write_enable_o <= reg_write_enable_i;
+				end
 			end
 			`OP_SUB : begin
+				if (operand_a_i[31] == 1'b1 && operand_b_c[31] == 1'b1 && operand_sum[31] == 1'b0 ||
+					operand_a_i[31] == 1'b0 && operand_b_c[31] == 1'b0 && operand_sum[31] == 1'b1) 
+				begin
+					reg_write_enable_o <= `WRITE_DISABLE;
+				end
+				else begin
+					reg_write_enable_o <= reg_write_enable_i;
+				end
 			end
 			default : begin
+				reg_write_enable_o <= reg_write_enable_i;
 			end
 		endcase
 		
@@ -170,20 +196,25 @@ module stage_ex(
 		
 		case (category) 
 			`CATEGORY_LOGIC : begin
+				reg_write_data_o <= result_logic;
 			end
 			`CATEGORY_SHIFT : begin
 			end
 			`CATEGORY_MOVE : begin
+				reg_write_data_o <= result_move;
 			end
 			`CATEGORY_ARITHMETIC : begin
+				reg_write_data_o <= result_arithmetic;
 			end
 			`CATEGORY_JUMP : begin
+				reg_write_data_o <= result_jump;
 			end
 			default : begin
+				reg_write_data_o <= 32'b0;
 			end
 		endcase
 	end
-	
+/*
 	always @(*) begin
 		if (reset == `RESET_ENABLE) begin
 			reg_hi_write_enable <= `WRITE_DISABLE;
@@ -202,6 +233,6 @@ module stage_ex(
 			end
 		endcase
 	end
-	
+*/	
 	
 endmodule

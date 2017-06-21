@@ -47,21 +47,15 @@ module stage_id(
 	input wire mem_reg_write_enable, //from mem
 	input wire [4: 0] mem_reg_write_address, //from mem
 	input wire [31:0] mem_reg_write_data, //from mem
-	output reg stall_request //to ex
+	output reg stall_request //to id_ex
 );
 
 
 	wire [31:0] pc_next    = pc_read_data + 32'd4;
     wire [31:0] pc_jump    = {pc_next[31:28], instruction_i[25:0], 2'b0]};
     wire [31:0] pc_branch  = pc_next + {{14 {instruction_i[15]}}, instruction_i[15:0], 2'b00};
-    wire [31:0] ex_operator_is_load = ex_operator == `OP_LB  || ex_operator == `OP_LW;
-                                      //ex_operator == `OP_LBU ||
-                                      //ex_operator == `OP_LH  ||
-                                      //ex_operator == `OP_LHU ||
-                                      //ex_operator == `OP_LWL ||
-                                      //ex_operator == `OP_LWR;
-
- 
+    wire [31:0] ex_operator_is_load = ex_operator == `OP_LB  || ex_operator == `OP_LW;                      
+	
 	reg [31:0] imm;
 	reg instvalid;
 	assign instruction_o = instruction_i;
@@ -107,12 +101,32 @@ module stage_id(
 						5'b00000 : begin
 							case (op3)
 								`OPC_AND : begin
+									operator <= `OP_AND;
+									category <= `CATEGORY_LOGIC;
+									reg_read_enable_a <= `READ_ENABLE;
+									reg_read_enable_b <= `READ_ENABLE;
+									reg_write_enable <= `WRITE_ENABLE;
 								end
 								`OPC_OR : begin
+									operator <= `OP_OR;
+									category <= `CATEGORY_LOGIC;
+									reg_read_enable_a <= `READ_ENABLE;
+									reg_read_enable_b <= `READ_ENABLE;
+									reg_write_enable <= `WRITE_ENABLE;
 								end
 								`OPC_XOR : begin
+									operator <= `OP_XOR;
+									category <= `CATEGORY_LOGIC;
+									reg_read_enable_a <= `READ_ENABLE;
+									reg_read_enable_b <= `READ_ENABLE;
+									reg_write_enable <= `WRITE_ENABLE;
 								end
 								`OPC_NOR : begin
+									operator <= `OP_NOR;
+									category <= `CATEGORY_LOGIC;
+									reg_read_enable_a <= `READ_ENABLE;
+									reg_read_enable_b <= `READ_ENABLE;
+									reg_write_enable <= `WRITE_ENABLE;
 								end
 								`OPC_SLLV : begin
 								end
@@ -135,14 +149,29 @@ module stage_id(
 								`OPC_MOVZ : begin
 								end
 								`OPC_SLT : begin
+									operator <= `OP_SLT;
+									category <= `CATEGORY_ARITHMETIC;
+									reg_read_enable_a <= `READ_ENABLE;
+									reg_read_enable_b <= `READ_ENABLE;
+									reg_write_enable <= `WRITE_ENABLE;
 								end
 								`OPC_SLTU : begin
 								end
 								`OPC_ADD : begin
+									operator <= `OP_ADD;
+									category <= `CATEGORY_ARITHMETIC;
+									reg_read_enable_a <= `READ_ENABLE;
+									reg_read_enable_b <= `READ_ENABLE;
+									reg_write_enable <= `WRITE_ENABLE;
 								end
 								`OPC_ADDU : begin
 								end
 								`OPC_SUB : begin
+									operator <= `OP_SUB;
+									category <= `CATEGORY_ARITHMETIC;
+									reg_read_enable_a <= `READ_ENABLE;
+									reg_read_enable_b <= `READ_ENABLE;
+									reg_write_enable <= `WRITE_ENABLE;
 								end
 								`OPC_SUBU : begin
 								end
@@ -151,6 +180,13 @@ module stage_id(
 								`OPC_MULTU : begin
 								end
 								`OPC_JR : begin
+									operator <= `OP_JR;
+									category <= `CATEGORY_JUMP;
+									reg_read_enable_a <= `READ_ENABLE;
+									reg_read_enable_b <= `READ_DISABLE;
+									reg_write_enable <= `WRITE_DISABLE;
+									pc_write_enable <= `WRITE_ENABLE;
+									pc_write_data <= operand_a;
 								end
 								`OPC_JALR : begin
 								end
@@ -304,8 +340,22 @@ module stage_id(
 				`OPC_JAL : begin
 				end
 				`OPC_BEQ : begin
+					operator <= `OP_BEQ;
+					category <= `CATEGORY_JUMP;
+					reg_read_enable_a <= `READ_ENABLE;
+					reg_read_enable_b <= `READ_ENABLE;
+					reg_write_enable <= `WRITE_DISABLE;
+					pc_write_enable <= (operand_a == operand_b) ? `WRITE_ENABLE : `WRITE_DISABLE;
+					pc_write_data <= pc_branch;
 				end
 				`OPC_BNE : begin
+					operator <= `OP_BNE;
+					category <= `CATEGORY_JUMP;
+					reg_read_enable_a <= `READ_ENABLE;
+					reg_read_enable_b <= `READ_ENABLE;
+					reg_write_enable <= `WRITE_DISABLE;
+					pc_write_enable <= (operand_a != operand_b) ? `WRITE_ENABLE : `WRITE_DISABLE;
+					pc_write_data <= pc_branch;
 				end
 				`OPC_BGTZ : begin
 				end
@@ -326,8 +376,25 @@ module stage_id(
 			end
 		end
 	end
-
-
+	
+//whether stall - wait for load instruction
+	always @(*) begin
+		if (reset == `RESET_ENABLE) begin
+            stall_request <= `STALL_DISABLE;
+        end
+        else begin
+            if (reg_read_enable_a == `READ_ENABLE && ex_operator_is_load == 1'b1 && ex_reg_write_address == reg_read_address_a) begin
+                stall_request <= `STALL_ENABLE;
+            end
+            else if (reg_read_enable_b == `READ_ENABLE && ex_operator_is_load == 1'b1 && ex_reg_write_address == reg_read_address_b) begin
+                stall_request <= `STALL_ENABLE;
+            end
+            else begin
+                stall_request <= `STALL_DISABLE;
+            end
+        end
+	end
+	
 //get operand
 	always @(*) begin
 		if (reset == `RESET_ENABLE) begin

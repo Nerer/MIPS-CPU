@@ -15,7 +15,7 @@ module trans_id_ex(
 	input wire id_reg_write_enable,
 	output reg ex_reg_write_enable,
 	input wire[4: 0] id_reg_write_address,
-	output reg[4: 0] ex_reg_write_address,
+	output reg[4: 0] ex_reg_write_address, 
 	input wire[31:0] id_reg_write_data,
 	output reg[31:0] ex_reg_write_data
 );
