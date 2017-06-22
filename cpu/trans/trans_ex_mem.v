@@ -21,7 +21,7 @@ module trans_ex_mem(
 
 //stall
 	always @(posedge clock) begin
-		if (reset == `RESET_ENABLE || (stall[2] == `STALL_DISABLE && stall[3] == `STALL_DISABLE)) begin
+		if (reset == `RESET_ENABLE || (stall[2] == `STALL_ENABLE && stall[3] == `STALL_DISABLE)) begin
 			mem_instruction <= 32'b0;
 			mem_operator <= `OP_NOP;
 			mem_operand_a <= 32'b0;

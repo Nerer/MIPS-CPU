@@ -22,7 +22,7 @@ module trans_id_ex(
 );
 
 	always @(posedge clock) begin
-		if (reset == `RESET_ENABLE || (stall[2] == `STALL_DISABLE && stall[3] == `STALL_DISABLE)) begin
+		if (reset == `RESET_ENABLE || (stall[2] == `STALL_ENABLE && stall[3] == `STALL_DISABLE)) begin
 			ex_instruction <= 32'b0;
 			ex_operator <= `OP_NOP;
 			ex_category <= `CATEGORY_NONE;
