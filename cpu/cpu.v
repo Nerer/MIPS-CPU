@@ -1,7 +1,8 @@
+include "defines.v";
 module cpu(
-	input wire clock，
-	input wire reset，
-	output wire[31:0] rom_read_address，
+	input wire clock,
+	input wire reset,
+	output wire[31:0] rom_read_address,
 	input wire[31:0] rom_read_data,
 	output wire ram_read_enable,
 	output wire[31:0] ram_read_address,
@@ -174,6 +175,7 @@ module cpu(
 		.id_reg_write_address(id_reg_write_address),
 		.id_reg_write_data(id_reg_write_data),
 		.ex_instruction(ex_instruction_i),
+		.ex_operator(ex_operator_i),
 		.ex_category(ex_category),
 		.ex_operand_a(ex_operand_a_i),
 		.ex_operand_b(ex_operand_b_i),
@@ -233,11 +235,14 @@ module cpu(
 		.mem_read_data(ram_read_data),
 		.mem_write_enable(ram_write_enable),
 		.mem_write_address(ram_write_address),
+		.mem_write_data(ram_write_data),
 		.mem_write_select(ram_write_select),
-		.mem_write_address_i(mem_reg_write_address_i),
-		.mem_write_address_o(mem_reg_write_address_o),
-		.mem_write_data_i(mem_reg_write_data_i),
-		.mem_write_data_o(mem_reg_write_data_o),	
+		.reg_write_enable_i(mem_reg_write_enable_i),
+		.reg_write_enable_o(mem_reg_write_enable_o),
+		.reg_write_address_i(mem_reg_write_address_i),
+		.reg_write_address_o(mem_reg_write_address_o),
+		.reg_write_data_i(mem_reg_write_data_i),
+		.reg_write_data_o(mem_reg_write_data_o)
 	);
 	
 	trans_mem_wb trans_mem_wb(

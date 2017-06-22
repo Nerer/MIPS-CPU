@@ -12,12 +12,12 @@
 `define OP_LW  8'b00101001
 `define OP_SB  8'b00101100
 `define OP_SW  8'b00101110
-
+include "defines.v";
 
 module stage_id(
 	input wire reset,
 	input wire [31:0] instruction_i,
-	output reg [31:0] instruction_o, //to ex
+	output wire [31:0] instruction_o, //to ex
 	output reg [2: 0] category, //to ex
 	output reg [7: 0] operator, //to ex
 	
@@ -51,10 +51,10 @@ module stage_id(
 );
 
 
-	wire [31:0] pc_next    = pc_read_data + 32'd4;
-    wire [31:0] pc_jump    = {pc_next[31:28], instruction_i[25:0], 2'b0]};
-    wire [31:0] pc_branch  = pc_next + {{14 {instruction_i[15]}}, instruction_i[15:0], 2'b00};
-    wire [31:0] ex_operator_is_load = ex_operator == `OP_LB  || ex_operator == `OP_LW;                      
+	wire [31:0] pc_next = pc_read_data + 32'd4;
+    	wire [31:0] pc_jump = {pc_next[31:28], instruction_i[25:0], 2'b0};
+    	wire [31:0] pc_branch = pc_next + {{14 {instruction_i[15]}}, instruction_i[15:0], 2'b00};
+    	wire [31:0] ex_operator_is_load = ex_operator == `OP_LB  || ex_operator == `OP_LW;                      
 	
 	reg [31:0] imm;
 	reg instvalid;
@@ -175,7 +175,7 @@ module stage_id(
 								end
 								`OPC_SUBU : begin
 								end
-								`OPC_MUlT : begin
+								`OPC_MULT : begin
 								end
 								`OPC_MULTU : begin
 								end
@@ -264,7 +264,7 @@ module stage_id(
 					reg_read_enable_b <= `READ_DISABLE;
 					reg_write_enable <= `WRITE_ENABLE;
 					reg_write_address <= instruction_i[20:16];
-					imm <= {16{instruction_i[15]}, instruction_i[15:0]};
+					imm <= {{16{instruction_i[15]}}, instruction_i[15:0]};
 					instvalid = 1'b1;
 				end
 				`OPC_SLTIU : begin
@@ -276,7 +276,7 @@ module stage_id(
 					reg_read_enable_b <= `READ_DISABLE;
 					reg_write_enable <= `WRITE_ENABLE;
 					reg_write_address <= instruction_i[20:16];
-					imm <= {16{instruction_i[15]}, instruction_i[15:0]};
+					imm <= {{16{instruction_i[15]}}, instruction_i[15:0]};
 				end
 				`OPC_ADDIU : begin
 				end
@@ -329,7 +329,7 @@ module stage_id(
 				`OPC_SWR : begin
 				end
 				`OPC_J : begin
-					operator <= `OP_j;
+					operator <= `OP_J;
 					category <= `CATEGORY_JUMP;
 					reg_read_enable_a <= `READ_DISABLE;
 					reg_read_enable_b <= `READ_DISABLE;

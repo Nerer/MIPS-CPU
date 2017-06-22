@@ -1,3 +1,4 @@
+include "defines.v";
 module trans_id_ex(
 	input wire clock,
 	input wire reset,
@@ -21,7 +22,7 @@ module trans_id_ex(
 );
 
 	always @(posedge clock) begin
-		if (reset == `RESET_ENABLE || (stall[2] == `STALL_DISABLLE && stall[3] == `STALL_DISABLLE)) begin
+		if (reset == `RESET_ENABLE || (stall[2] == `STALL_DISABLE && stall[3] == `STALL_DISABLE)) begin
 			ex_instruction <= 32'b0;
 			ex_operator <= `OP_NOP;
 			ex_category <= `CATEGORY_NONE;
@@ -31,7 +32,7 @@ module trans_id_ex(
 			ex_reg_write_address <= 32'b0;
 			ex_reg_write_data <= 32'b0;
 		end
-		else if (stall[2] == `DISABLE) begin
+		else if (stall[2] == `STALL_DISABLE) begin
 			ex_instruction <= id_instruction;
 			ex_operator <= id_operator;
 			ex_category <= id_category;

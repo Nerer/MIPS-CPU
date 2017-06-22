@@ -1,3 +1,4 @@
+include "defines.v";
 module control(
 	input wire reset,
 	input wire id_stall_request,

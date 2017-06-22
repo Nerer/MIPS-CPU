@@ -1,3 +1,4 @@
+include "defines.v";
 module trans_ex_mem(
 	input wire clock, //from cpu
 	input wire reset, //from cpu
@@ -15,14 +16,14 @@ module trans_ex_mem(
 	input wire[4: 0] ex_reg_write_address, //from ex
 	output reg[4: 0] mem_reg_write_address, //to mem
 	input wire[31:0] ex_reg_write_data, //from ex
-	output reg[31:0] mem_reg_write_data, //to mem
+	output reg[31:0] mem_reg_write_data //to mem
 );
 
 //stall
 	always @(posedge clock) begin
 		if (reset == `RESET_ENABLE || (stall[2] == `STALL_DISABLE && stall[3] == `STALL_DISABLE)) begin
 			mem_instruction <= 32'b0;
-			mem_operator <= `OPERATOR_NOP;
+			mem_operator <= `OP_NOP;
 			mem_operand_a <= 32'b0;
 			mem_operand_b <= 32'b0;
 			mem_reg_write_enable <= `WRITE_DISABLE;

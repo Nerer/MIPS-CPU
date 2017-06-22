@@ -1,3 +1,4 @@
+include "defines.v";
 module trans_if_id(
 	input wire clock,
 	input wire reset,
@@ -9,7 +10,7 @@ module trans_if_id(
 );
 	
 	always @(posedge clock) begin
-		if (reset == `RESET_ENABLE || (stall[1] == `STALL_DISABLE && stall[2] = `STALL_DISABLE)) begin
+		if (reset == `RESET_ENABLE || (stall[1] == `STALL_ENABLE && stall[2] == `STALL_DISABLE)) begin
 			id_pc_read_data <= 32'b0;
 			id_instruction <= 32'b0;
 		end

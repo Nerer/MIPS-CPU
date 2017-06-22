@@ -1,3 +1,4 @@
+include "defines.v";
 module stage_wb(
 	input wire clock,
 	input wire reset,

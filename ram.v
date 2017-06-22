@@ -1,3 +1,4 @@
+include "defines.v";
 module ram(
 	input wire clock,
 	input wire chip_enable,

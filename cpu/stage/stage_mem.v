@@ -12,6 +12,7 @@
 `define OP_LW  8'b00101001
 `define OP_SB  8'b00101100
 `define OP_SW  8'b00101110
+include "defines.v";
 module stage_mem(
 	input wire reset,
 	input wire [31:0] instruction,
@@ -38,11 +39,11 @@ module stage_mem(
 // address <- base + offset
     wire [31:0] address = operand_a + {{16 {instruction[15]}}, instruction[15:0]};
 	reg [7: 0] mem_read_tmp;
-	always @() begin
+	always @(*) begin
 		if (reset == `RESET_ENABLE) begin
 			mem_read_enable <= `READ_DISABLE;
 			mem_read_address <= 32'b0;
-			mem_write_enable <- `READ_ENABLE;
+			mem_write_enable <= `READ_ENABLE;
 			mem_write_address <= 32'b0;
 			mem_write_select <= 4'b0;
 			mem_write_data <= 32'b0;
@@ -53,7 +54,7 @@ module stage_mem(
 		else begin
 			mem_read_enable <= `READ_DISABLE;
 			mem_read_address <= 32'b0;
-			mem_write_enable <- `READ_ENABLE;
+			mem_write_enable <= `READ_ENABLE;
 			mem_write_address <= 32'b0;
 			mem_write_select <= 4'b0;
 			mem_write_data <= 32'b0;
@@ -84,7 +85,7 @@ module stage_mem(
 							mem_read_tmp <= 8'b0;
 						end
 					endcase
-					reg_write_data_o <= {24 {mem_read_tmp[7]}, mem_read_tmp[7: 0]}
+					reg_write_data_o <= {{24 {mem_read_tmp[7]}}, mem_read_tmp[7: 0]};
 				end
 				`OP_LW : begin
 					mem_read_enable <= `READ_ENABLE;
@@ -95,7 +96,7 @@ module stage_mem(
 				`OP_SB : begin
 					mem_read_enable <= `READ_DISABLE;
 					mem_write_enable <= `WRITE_ENABLE;
-					mem_write_data <= {4 operand_b[7:0]};
+					mem_write_data <= {4 {operand_b[7:0]}};
 					case (address[1:0])
 						2'b00 : begin
 							mem_write_select <= 4'b1000;

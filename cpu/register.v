@@ -1,3 +1,4 @@
+include "defines.v";
 module register(
 	input wire clock,
 	input wire reset,
@@ -7,6 +8,7 @@ module register(
 	input wire read_enable_b,
 	input wire [4: 0] read_address_b,
 	output reg [31:0] read_data_b,
+	input wire write_enable,
 	input wire [4: 0] write_address,
 	input wire [31:0] write_data
 );

@@ -1,8 +1,9 @@
+include "defines.v";
 module stage_if(
 	input wire clock,
 	input wire reset,
 	input wire[5:0] stall,
-	output reg[31:0] pc_read_data，
+	output reg[31:0] pc_read_data,
 	input wire[31:0] pc_write_data,
 	input wire pc_write_enable
 );

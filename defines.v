@@ -83,7 +83,7 @@
 `define OPC_SWL    6'b101010
 `define OPC_SWR    6'b101110
 
-`define OP_NOPC    8'b00000000
+`define OP_NOP    8'b00000000
 `define OP_AND    8'b00000001
 `define OP_OR     8'b00000010
 `define OP_XOR    8'b00000011

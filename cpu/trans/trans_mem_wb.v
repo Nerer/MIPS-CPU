@@ -1,3 +1,4 @@
+include "defines.v";
 module trans_mem_wb(
 	input wire clock,
 	input wire reset,
@@ -7,7 +8,7 @@ module trans_mem_wb(
 	input wire[4: 0] mem_reg_write_address,
 	output reg[4: 0] wb_reg_write_address,
 	input wire[31:0] mem_reg_write_data,
-	output reg[31:0] wb_reg_write_data,
+	output reg[31:0] wb_reg_write_data
 );
 
 	always @(posedge clock) begin

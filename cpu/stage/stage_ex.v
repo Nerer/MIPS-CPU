@@ -1,17 +1,18 @@
+include "defines.v";
 module stage_ex(
 	input wire reset, //from cpu
 	
 	input wire [31:0] instruction_i, //from id
-	output reg [31:0] instruction_o, //to mem
+	output wire [31:0] instruction_o, //to mem
 
 	input wire [7: 0] operator_i, //from id
-	output reg [7: 0] operator_o, //to mem
+	output wire [7: 0] operator_o, //to mem
 	input wire [2: 0] category, //from id
 	
 	input wire [31:0] operand_a_i, //from id
-	output reg [31:0] operand_a_o, //to mem
+	output wire [31:0] operand_a_o, //to mem
 	input wire [31:0] operand_b_i, //from id
-	output reg [31:0] operand_b_o, //to mem
+	output wire [31:0] operand_b_o, //to mem
 	
 	input wire reg_write_enable_i, //from id
 	output reg reg_write_enable_o, //to mem
@@ -19,7 +20,7 @@ module stage_ex(
 	output reg [4: 0] reg_write_address_o, //to mem
 	input wire [31:0] reg_write_data_i, //from id
 	output reg [31:0] reg_write_data_o, //to mem
-	
+	/*
 	output reg reg_hi_write_enable, //to mem
 	output reg [31:0] reg_hi_write_data, //to mem
 	output reg reg_lo_write_enable, //to mem
@@ -36,13 +37,13 @@ module stage_ex(
 	input wire [31:0] wb_reg_lo_read_data, //from wb
 	input wire wb_reg_lo_write_enable, //from wb
 	input wire [31:0] wb_reg_lo_write_data, //from wb
-	
+	*/
 	output reg stall_request
 );
 
     wire [31:0] operand_a_c = ~operand_a_i + 1;
     wire [31:0] operand_b_c = ~operand_b_i + 1;
-	wire [31:0] operand_sum = operand_a_i + (operator_i == `OP_SLT  || operator_i == `OP_SUB  || operator_i == `OP_SUBU ? operand_b_c : operand_b_i);
+    wire [31:0] operand_sum = operand_a_i + (operator_i == `OP_SLT  || operator_i == `OP_SUB  || operator_i == `OP_SUBU ? operand_b_c : operand_b_i);
 
     assign instruction_o = instruction_i;
     assign operator_o = operator_i;
@@ -201,7 +202,6 @@ module stage_ex(
 			`CATEGORY_SHIFT : begin
 			end
 			`CATEGORY_MOVE : begin
-				reg_write_data_o <= result_move;
 			end
 			`CATEGORY_ARITHMETIC : begin
 				reg_write_data_o <= result_arithmetic;
