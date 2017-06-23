@@ -1,17 +1,3 @@
-`define OP_ADD 8'b00010000
-`define OP_SUB 8'b00010010
-`define OP_AND 8'b00000001
-`define OP_OR  8'b00000010
-`define OP_XOR 8'b00000011
-`define OP_SLT 8'b00001110
-`define OP_BEQ 8'b00011101
-`define OP_BNE 8'b00100100
-`define OP_J   8'b00011001
-`define OP_JR  8'b00011100
-`define OP_LB  8'b00100101
-`define OP_LW  8'b00101001
-`define OP_SB  8'b00101100
-`define OP_SW  8'b00101110
 include "defines.v";
 
 module stage_id(
@@ -284,7 +270,7 @@ module stage_id(
 					operator <= `OP_LB;
 					category <= `CATEGORY_MEMORY;
 					reg_read_enable_a <= `READ_ENABLE;
-					reg_read_enable_b <= `READ_DISABLE;
+					reg_read_enable_b <= `READ_ENABLE;
 					reg_write_enable <= `WRITE_ENABLE;
 					reg_write_address <= instruction_i[20:16];
 				end
@@ -298,7 +284,7 @@ module stage_id(
 					operator <= `OP_LW;
 					category <= `CATEGORY_MEMORY;
 					reg_read_enable_a <= `READ_ENABLE;
-					reg_read_enable_b <= `READ_DISABLE;
+					reg_read_enable_b <= `READ_ENABLE;
 					reg_write_enable <= `WRITE_ENABLE;
 					reg_write_address <= instruction_i[20:16];
 				end
@@ -310,18 +296,18 @@ module stage_id(
 					operator <= `OP_SB;
 					category <= `CATEGORY_MEMORY;
 					reg_read_enable_a <= `READ_ENABLE;
-					reg_read_enable_b <= `READ_DISABLE;
-					reg_write_enable <= `WRITE_ENABLE;
+					reg_read_enable_b <= `READ_ENABLE;
+					reg_write_enable <= `WRITE_DISABLE;
 					reg_write_address <= instruction_i[20:16];
 				end
 				`OPC_SH : begin
 				end
 				`OPC_SW : begin
-					operator <= `OP_SB;
+					operator <= `OP_SW;
 					category <= `CATEGORY_MEMORY;
 					reg_read_enable_a <= `READ_ENABLE;
-					reg_read_enable_b <= `READ_DISABLE;
-					reg_write_enable <= `WRITE_ENABLE;
+					reg_read_enable_b <= `READ_ENABLE;
+					reg_write_enable <= `WRITE_DISABLE;
 					reg_write_address <= instruction_i[20:16];
 				end
 				`OPC_SWL : begin

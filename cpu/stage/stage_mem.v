@@ -1,17 +1,3 @@
-`define OP_ADD 8'b00010000
-`define OP_SUB 8'b00010010
-`define OP_AND 8'b00000001
-`define OP_OR  8'b00000010
-`define OP_XOR 8'b00000011
-`define OP_SLT 8'b00001110
-`define OP_BEQ 8'b00011101
-`define OP_BNE 8'b00100100
-`define OP_J   8'b00011001
-`define OP_JR  8'b00011100
-`define OP_LB  8'b00100101
-`define OP_LW  8'b00101001
-`define OP_SB  8'b00101100
-`define OP_SW  8'b00101110
 include "defines.v";
 module stage_mem(
 	input wire reset,
@@ -54,7 +40,7 @@ module stage_mem(
 		else begin
 			mem_read_enable <= `READ_DISABLE;
 			mem_read_address <= 32'b0;
-			mem_write_enable <= `READ_ENABLE;
+			mem_write_enable <= `WRITE_DISABLE;
 			mem_write_address <= 32'b0;
 			mem_write_select <= 4'b0;
 			mem_write_data <= 32'b0;
@@ -62,30 +48,28 @@ module stage_mem(
 			reg_write_enable_o <= reg_write_enable_i;
 			reg_write_address_o <= reg_write_address_i;
 			reg_write_data_o <= reg_write_data_i;
-			mem_read_tmp <= 8'b0;
 			case (operator)
 				`OP_LB : begin
 					mem_read_enable <= `READ_ENABLE;
 					mem_read_address <= address;
 					mem_write_enable <= `WRITE_DISABLE;			
 					case (address[1:0])
-						2'b00 : begin
-							mem_read_tmp <= mem_read_data[31:24];
-						end
-						2'b01 : begin
-							mem_read_tmp <= mem_read_data[23:16];
-						end
-						2'b10 : begin
-							mem_read_tmp <= mem_read_data[15:8];
-						end
-						2'b11 : begin
-							mem_read_tmp <= mem_read_data[7:0];
-						end
-						default : begin
-							mem_read_tmp <= 8'b0;
-						end
-					endcase
-					reg_write_data_o <= {{24 {mem_read_tmp[7]}}, mem_read_tmp[7: 0]};
+                        2'b00 : begin
+                            reg_write_data_o <= {{24 {mem_read_data[31]}}, mem_read_data[31:24]};  
+                        end
+                        2'b01 : begin
+                            reg_write_data_o <= {{24 {mem_read_data[23]}}, mem_read_data[23:16]};  
+                        end
+                        2'b10 : begin
+                            reg_write_data_o <= {{24 {mem_read_data[15]}}, mem_read_data[15:8]};  
+                        end
+                        2'b11 : begin
+                            reg_write_data_o <= {{24 {mem_read_data[7]}}, mem_read_data[7:0]};  
+                        end
+                        default : begin
+                            reg_write_data_o <= 32'b0;  
+                        end
+                    endcase
 				end
 				`OP_LW : begin
 					mem_read_enable <= `READ_ENABLE;
@@ -96,6 +80,7 @@ module stage_mem(
 				`OP_SB : begin
 					mem_read_enable <= `READ_DISABLE;
 					mem_write_enable <= `WRITE_ENABLE;
+					mem_write_address <= address;
 					mem_write_data <= {4 {operand_b[7:0]}};
 					case (address[1:0])
 						2'b00 : begin

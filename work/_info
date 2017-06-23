@@ -8,3 +8,339 @@ z2
 !i10f 100
 cModel Technology
 dC:/Users/TFF/Desktop/AchSystem
+vcontrol
+Z0 !s110 1498159280
+!i10b 1
+!s100 AdWS^5V7N6V;^Fh8OX2<:1
+Ik]DBPj2hVLb7;mcbK8DH=2
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/TFF/Desktop/AchSystem/Mips-CPU
+w1498101266
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/control.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/control.v
+L0 2
+Z3 OP;L;10.4a;61
+r1
+!s85 0
+31
+Z4 !s108 1498159280.000000
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/control.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/control.v|
+!s101 -O0
+!i113 1
+Z5 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+vcpu
+R0
+!i10b 1
+!s100 ;zz0EeSGS^Y`gdjYnnCjH3
+IZ2VjGfVfSdQY[Qjl1M=G:1
+R1
+R2
+w1498104762
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/cpu.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/cpu.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/cpu.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/cpu.v|
+!s101 -O0
+!i113 1
+R5
+vram
+R0
+!i10b 1
+!s100 =SaBC?<kWiOj4N3=4^[AH0
+IdYj]]eP[6?j6ii0IXF3Z:1
+R1
+R2
+w1498101183
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/ram.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/ram.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/ram.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/ram.v|
+!s101 -O0
+!i113 1
+R5
+vregister
+R0
+!i10b 1
+!s100 V5FB=^F5hMVj3PP10CZUD2
+INGaN:6DdGR3<Ml3bkFboA3
+R1
+R2
+w1498103040
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/register.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/register.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/register.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/register.v|
+!s101 -O0
+!i113 1
+R5
+vrom
+R0
+!i10b 1
+!s100 1SkNgj8V[L:dc_8<>SSil1
+IhdS6BNY0aEXM6JN?8Tm7g0
+R1
+R2
+w1498125913
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/rom.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/rom.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/rom.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/rom.v|
+!s101 -O0
+!i113 1
+R5
+vsopc
+R0
+!i10b 1
+!s100 g:lN@SdTj>jV6lOi1E^co2
+IjUlKa5X7G7LS_@;Uo7Jam0
+R1
+R2
+w1498103155
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/sopc.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/sopc.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/sopc.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/sopc.v|
+!s101 -O0
+!i113 1
+R5
+vstage_ex
+Z6 !s110 1498159281
+!i10b 1
+!s100 P31QcD;eVhoBN<^hi>PQN2
+I:YZT;H6?`h[R0[3ezA8Mm3
+R1
+R2
+w1498104488
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_ex.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_ex.v
+L0 2
+R3
+r1
+!s85 0
+31
+Z7 !s108 1498159281.000000
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_ex.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_ex.v|
+!s101 -O0
+!i113 1
+R5
+vstage_id
+R6
+!i10b 1
+!s100 RT920O1^c@b0zaDn@Rg<51
+I[7S7fIfFiVeiDCbYGY:lA0
+R1
+R2
+w1498153372
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_id.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_id.v
+L0 3
+R3
+r1
+!s85 0
+31
+R7
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_id.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_id.v|
+!s101 -O0
+!i113 1
+R5
+vstage_if
+R6
+!i10b 1
+!s100 l4W^2[<Cg?3Mf@UdkT`1k0
+I9_eM[UGeU7Yk[^z;Y9FhC1
+R1
+R2
+w1498103229
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_if.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_if.v
+L0 2
+R3
+r1
+!s85 0
+31
+R7
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_if.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_if.v|
+!s101 -O0
+!i113 1
+R5
+vstage_mem
+R6
+!i10b 1
+!s100 VoI`JE<Dgj:6?g]IaTL7j0
+IgJ^TJW@TEiO@aF]LM0c>K1
+R1
+R2
+w1498151591
+8C:\Users\TFF\Desktop\AchSystem\Mips-CPU\cpu\stage\stage_mem.v
+FC:\Users\TFF\Desktop\AchSystem\Mips-CPU\cpu\stage\stage_mem.v
+L0 2
+R3
+r1
+!s85 0
+31
+R7
+!s107 defines.v|C:\Users\TFF\Desktop\AchSystem\Mips-CPU\cpu\stage\stage_mem.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:\Users\TFF\Desktop\AchSystem\Mips-CPU\cpu\stage\stage_mem.v|
+!s101 -O0
+!i113 1
+R5
+vstage_wb
+R0
+!i10b 1
+!s100 ]l<Q7nT:Bz2ezCH>?PL1X2
+I>V:;8mlIG_=_mPkijR_8P3
+R1
+R2
+w1498101228
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_wb.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_wb.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_wb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/stage/stage_wb.v|
+!s101 -O0
+!i113 1
+R5
+vtest_banch
+R6
+!i10b 1
+!s100 9_n5GKM[oiNXPcGzg_]]F1
+IXhml8BB`8UKbE560hgL:R0
+R1
+R2
+w1498124135
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/teset_banch.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/teset_banch.v
+L0 2
+R3
+r1
+!s85 0
+31
+R7
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/teset_banch.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/teset_banch.v|
+!s101 -O0
+!i113 1
+R5
+vtrans_ex_mem
+R0
+!i10b 1
+!s100 QZaO8W1W[:Fn@^OYfBPKZ2
+I`klfZXJ46M1U6AM`KlCP[2
+R1
+R2
+w1498159272
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_ex_mem.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_ex_mem.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_ex_mem.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_ex_mem.v|
+!s101 -O0
+!i113 1
+R5
+vtrans_id_ex
+R0
+!i10b 1
+!s100 41R7j7Tfoz9iIPe_5jNZb1
+IaCnkc_z`mkRVFbc8_JmU83
+R1
+R2
+w1498129667
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_id_ex.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_id_ex.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_id_ex.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_id_ex.v|
+!s101 -O0
+!i113 1
+R5
+vtrans_if_id
+R0
+!i10b 1
+!s100 F7^^J]JM[2kKBFX`7Hohn3
+I@lZUC3Da>n^RL:YEi`Hjb1
+R1
+R2
+w1498128618
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_if_id.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_if_id.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_if_id.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_if_id.v|
+!s101 -O0
+!i113 1
+R5
+vtrans_mem_wb
+R0
+!i10b 1
+!s100 IEb>@YI?lff_fPS3Ykcnb3
+IUKbl7Iz48X^3?NKf[eF?C0
+R1
+R2
+w1498103638
+8C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_mem_wb.v
+FC:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_mem_wb.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 defines.v|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_mem_wb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/TFF/Desktop/AchSystem/Mips-CPU/cpu/trans/trans_mem_wb.v|
+!s101 -O0
+!i113 1
+R5

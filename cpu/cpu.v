@@ -130,7 +130,7 @@ module cpu(
 		.instruction_i(id_instruction_i),
 		.instruction_o(id_instruction_o),
 		.pc_write_enable(id_pc_write_enable),
-		.pc_write_data(id_pc_read_data),
+		.pc_write_data(id_pc_write_data),
 		.pc_read_data(id_pc_read_data),
         .reg_read_enable_a(id_reg_read_enable_a),
         .reg_read_address_a(id_reg_read_address_a),
